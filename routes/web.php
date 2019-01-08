@@ -60,4 +60,11 @@ Route::group(['prefix' => config('app.admin_page'), 'middleware' => 'auth'], fun
 	    Route::any('/{id}/edit', 'ArticlesController@edit')->middleware('permission:articles_edit');
 	    Route::delete('/{id}/delete', 'ArticlesController@delete')->middleware('permission:articles_delete');
 	});
+
+	Route::group(['prefix' => 'sites', 'middleware' => 'auth'], function () {
+	    Route::get('/', 'SitesController@index')->middleware('permission:articles_view');
+	    Route::any('/create', 'SitesController@create')->middleware('permission:articles_create');
+	    Route::any('/{id}/edit', 'SitesController@edit')->middleware('permission:articles_edit');
+	    Route::delete('/{id}/delete', 'SitesController@delete')->middleware('permission:articles_delete');
+	});
 });

@@ -13,6 +13,7 @@ class SitesController extends ApiController {
     {
         $model = Site::where('domain', $domain)->first();
         if ($model) {
+        	$model->css_style = trim(preg_replace('/\s\s+/', ' ', $model->css_style));
             return $this->responseOk($model);
         }
 
